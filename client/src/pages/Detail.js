@@ -8,15 +8,13 @@ class Detail extends Component {
   state = {
     book: {}
   };
-  // Add code to get the book with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/books/:id
-  // The book id for this route can be accessed using this.props.match.params.id
-
-componentDidMount() {
-  API.getBook(this.props.match.params.id)
-  .then(res => this.setState({book: res.data}))
-  .catch(err => console.log(err));
-}
+  // When this component mounts, grab the book with the _id of this.props.match.params.id
+  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  componentDidMount() {
+    API.getBook(this.props.match.params.id)
+      .then(res => this.setState({ book: res.data }))
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -34,7 +32,9 @@ componentDidMount() {
           <Col size="md-10 md-offset-1">
             <article>
               <h1>Synopsis</h1>
-              <p>{this.state.book.synopsis}</p>
+              <p>
+                {this.state.book.synopsis}
+              </p>
             </article>
           </Col>
         </Row>
